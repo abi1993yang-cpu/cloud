@@ -13,13 +13,17 @@
       height: 100vh;
       margin: -200px;
       padding: 0;
-      background: url("https://abi1993yang-cpu.github.io/lrs/happy1.gif") no-repeat center center fixed;
+
+      /* Pink gradient background fill + GIF */
+      background: 
+        linear-gradient(135deg, #ffd4e5 0%, #ffeff7 40%, #ffe3f1 100%),
+        url("https://abi1993yang-cpu.github.io/lrs/happy1.gif") no-repeat center center;
       background-size: 300px 300px;
+
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
 
-    /* Floating hearts */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -27,6 +31,7 @@
       color: #ff6fa8;
       animation: floatUp 4s linear forwards;
       opacity: 0.8;
+      pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -45,43 +50,6 @@
       text-shadow: 0 0 8px #fff;
     }
 
-    button {
-      padding: 14px 32px;
-      margin: 18px;
-      font-size: 22px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-weight: bold;
-    }
-
-    #yesBtn {
-      background-color: #ff8ac0;
-      color: white;
-      box-shadow: 0 0 12px #ffb6d9;
-      position: relative;
-      animation: yesGlow 2s infinite alternate;
-    }
-
-    @keyframes yesGlow {
-      0% { box-shadow: 0 0 8px #ffb6d9; }
-      100% { box-shadow: 0 0 18px #ff58a8; }
-    }
-
-    #noBtn {
-      background-color: #ff4f6d;
-      color: white;
-      position: absolute;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 1.6rem; }
-      button { font-size: 18px; padding: 12px 26px; }
-      body { background-size: 200px 200px; }
-    }
-
-    /* 🎵 Music toggle button */
     #musicBtn {
       position: fixed;
       bottom: 20px;
@@ -107,7 +75,6 @@
 
 <body>
 
-  <!-- Floating hearts system -->
   <script>
     setInterval(() => {
       const heart = document.createElement("div");
@@ -123,25 +90,20 @@
     <h1>谢谢你愿意❤️！</h1>
   </div>
 
-  <!-- 🎧 Audio using your MP3 -->
   <audio id="bgMusic" loop>
     <source src="https://abi1993yang-cpu.github.io/lrs/music.mp3" type="audio/mp3">
   </audio>
 
-  <!-- 🎵 Play/Pause button -->
   <button id="musicBtn">🎵</button>
 
   <script>
-
     const musicBtn = document.getElementById("musicBtn");
     const bgMusic = document.getElementById("bgMusic");
 
-    // Auto play after any touch/click (needed for iPhone)
     document.body.addEventListener("click", () => {
       if (bgMusic.paused) bgMusic.play();
     }, { once: true });
 
-    // Play/pause toggle
     musicBtn.addEventListener("click", () => {
       if (bgMusic.paused) {
         bgMusic.play();
@@ -151,10 +113,7 @@
         musicBtn.innerHTML = "🎵";
       }
     });
-
   </script>
 
 </body>
 </html>
-
-
