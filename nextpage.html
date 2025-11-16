@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congrats!</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background: #f0fff0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #4caf50;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #2196f3;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #1976d2;
+    }
+    a {
+      margin-top: 20px;
+      font-size: 18px;
+      display: block;
+      color: #e91e63;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Congrats! 🎉</h1>
+  <p>Drop the location link for our date:</p>
+  <input type="text" id="locationInput" placeholder="Paste Google Maps link here">
+  <button onclick="setLocation()">Save</button>
+  <div id="output"></div>
+
+  <script>
+    function setLocation() {
+      const input = document.getElementById("locationInput").value;
+      if (input) {
+        document.getElementById("output").innerHTML =
+          `<p>Great! Here's our date spot: <a href="${input}" target="_blank">${input}</a></p>`;
+      }
+    }
+  </script>
+</body>
+</html>
