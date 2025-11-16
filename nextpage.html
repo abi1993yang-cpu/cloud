@@ -3,79 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Congrats!</title>
+  <title>恭喜！</title>
+
   <style>
     body {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       height: 100vh;
-      background: #f0fff0;
+      margin: -200px;
+      padding: 0;
+      background: url("https://abi1993yang-cpu.github.io/lrs/flower1.gif") no-repeat center center fixed;
+      background-size: 300px 300px;
       font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      color: #ff6fa8;
+      animation: floatUp 4s linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.8); opacity: 0; }
+    }
+
+    .container {
       text-align: center;
     }
+
     h1 {
-      color: #4caf50;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      color: #e91e63;
+      font-size: 2rem;
+      margin-top: -50px;
+      text-shadow: 0 0 8px #fff;
     }
-    input {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      margin-bottom: 15px;
-    }
+
     button {
-      padding: 12px 24px;
-      font-size: 18px;
+      padding: 14px 32px;
+      margin: 18px;
+      font-size: 22px;
       border: none;
-      border-radius: 8px;
-      background-color: #2196f3;
-      color: white;
+      border-radius: 12px;
       cursor: pointer;
       transition: 0.3s;
+      font-weight: bold;
     }
-    button:hover {
-      background-color: #1976d2;
+
+    #yesBtn {
+      background-color: #ff8ac0;
+      color: white;
+      box-shadow: 0 0 12px #ffb6d9;
+      position: relative;
+      animation: yesGlow 2s infinite alternate;
     }
-    a {
-      margin-top: 20px;
-      font-size: 18px;
-      display: block;
-      color: #e91e63;
-      text-decoration: none;
+
+    @keyframes yesGlow {
+      0% { box-shadow: 0 0 8px #ffb6d9; }
+      100% { box-shadow: 0 0 18px #ff58a8; }
+    }
+
+    #noBtn {
+      background-color: #ff4f6d;
+      color: white;
+      position: absolute;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      button { font-size: 18px; padding: 12px 26px; }
+      body { background-size: 200px 200px; }
+    }
+
+    /* 🎵 Music toggle button */
+    #musicBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #ff8ac0;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      border: none;
+      box-shadow: 0 0 12px #ffb6d9;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      animation: popIn 0.6s ease-out;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
+
 <body>
-  <h1>Congrats! 🎉</h1>
-  <p>Drop the location link for our date:</p>
-  <input type="text" id="locationInput" placeholder="Paste Google Maps link here">
-  <button onclick="setLocation()">Save</button>
-  <div id="output"></div>.
-  
-  <!-- Background music from YouTube -->
-  <div class="music-player">
-    <iframe
-      src="https://www.youtube.com/embed/i7IZrHzn8Xo&?autoplay=1&loop=1&playlist=i7IZrHzn8Xo&"
-      title="Background music"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
+
+  <!-- Floating hearts system -->
   <script>
-    function setLocation() {
-      const input = document.getElementById("locationInput").value;
-      if (input) {
-        document.getElementById("output").innerHTML =
-          `<p>Great! Here's our date spot: <a href="${input}" target="_blank">${input}</a></p>`;
-      }
-    }
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, 700);
   </script>
+
+  <div class="container">
+    <h1>恭喜！</h1>
+  </div>
+
+  <!-- 🎧 Audio using your MP3 -->
+  <audio id="bgMusic" loop>
+    <source src="https://abi1993yang-cpu.github.io/lrs/music.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- 🎵 Play/Pause button -->
+  <button id="musicBtn">🎵</button>
+
+  <script>
+
+    const musicBtn = document.getElementById("musicBtn");
+    const bgMusic = document.getElementById("bgMusic");
+
+    // Auto play after any touch/click (needed for iPhone)
+    document.body.addEventListener("click", () => {
+      if (bgMusic.paused) bgMusic.play();
+    }, { once: true });
+
+    // Play/pause toggle
+    musicBtn.addEventListener("click", () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.innerHTML = "⏸️";
+      } else {
+        bgMusic.pause();
+        musicBtn.innerHTML = "🎵";
+      }
+    });
+
+  </script>
+
 </body>
 </html>
-
