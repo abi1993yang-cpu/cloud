@@ -4,42 +4,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>愿意跟我在一起吗？</title>
+
   <style>
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: -200px;
+      margin: -200px;;
+      padding: 0;
       background: url("https://abi1993yang-cpu.github.io/lrs/flower1.gif") no-repeat center center fixed;
       background-size: 300px 300px;
       font-family: Arial, sans-serif;
+      overflow: hidden; /* allow floating hearts */
     }
+
+    /* Floating heart animation */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      color: #ff6fa8;
+      animation: floatUp 4s linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.8);
+        opacity: 0;
+      }
+    }
+
     .container {
       text-align: center;
     }
+
     h1 {
       color: #e91e63;
       font-size: 2rem;
-      margin-top: 0; /* move title higher */
+      margin-top: 0;
+      text-shadow: 0 0 8px #fff;
     }
+
+    /* Cute pink button styles */
     button {
-      padding: 12px 24px;
-      margin: 20px;
-      font-size: 20px;
+      padding: 14px 32px;
+      margin: 18px;
+      font-size: 22px;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       transition: 0.3s;
+      font-weight: bold;
     }
+
     #yesBtn {
-      background-color: #4caf50;
+      background-color: #ff8ac0;
       color: white;
+      box-shadow: 0 0 12px #ffb6d9;
+      position: relative;
+      animation: yesGlow 2s infinite alternate;
     }
+
+    /* Sparkling glow animation */
+    @keyframes yesGlow {
+      0% { box-shadow: 0 0 8px #ffb6d9; }
+      100% { box-shadow: 0 0 18px #ff58a8; }
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
     #noBtn {
-      background-color: #f44336;
+      background-color: #ff4f6d;
       color: white;
       position: absolute;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      button {
+        font-size: 18px;
+        padding: 12px 26px;
+      }
+      body {
+        background-size: 200px 200px;
+      }
     }
 
     /* Hidden background music player */
@@ -59,54 +118,59 @@
     }
   </style>
 </head>
+
 <body>
+
   <div class="container">
     <h1>愿意跟我在一起吗？</h1>
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
   </div>
 
-  <!-- Background music from YouTube -->
+  <!-- Background music -->
   <div class="music-player">
     <iframe
       src="https://www.youtube.com/embed/i7IZrHzn8Xo?autoplay=1&loop=1&playlist=i7IZrHzn8Xo"
-      title="Background music"
       frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
+      allow="autoplay; encrypted-media">
     </iframe>
   </div>
 
   <script>
+
+    /* Floating hearts every 700ms */
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }, 700);
+
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
 
-    // Redirect when clicking Yes
     yesBtn.addEventListener("click", () => {
       window.location.href = "nextpage.html";
     });
 
-    // Move the No button on click (works on phone + PC)
-  noBtn.addEventListener("click", (e) => {
-    e.preventDefault(); // prevent accidental click
-    moveNoButton();
-  });
+    // Move the No button (mobile + PC)
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
 
-  function moveNoButton() {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-  }
+    function moveNoButton() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
