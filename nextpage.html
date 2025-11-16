@@ -55,8 +55,18 @@
   <p>Drop the location link for our date:</p>
   <input type="text" id="locationInput" placeholder="Paste Google Maps link here">
   <button onclick="setLocation()">Save</button>
-  <div id="output"></div>
-
+  <div id="output"></div>.
+  
+  <!-- Background music from YouTube -->
+  <div class="music-player">
+    <iframe
+      src="https://www.youtube.com/embed/i7IZrHzn8Xo&?autoplay=1&loop=1&playlist=i7IZrHzn8Xo&"
+      title="Background music"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
   <script>
     function setLocation() {
       const input = document.getElementById("locationInput").value;
@@ -68,3 +78,4 @@
   </script>
 </body>
 </html>
+
