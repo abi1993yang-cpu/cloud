@@ -10,7 +10,9 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #fff7f9;
+      margin: 0;
+      background: url("https://tenor.com/view/ohhhhh-gif-20235380") no-repeat center center fixed;
+      background-size: cover;
       font-family: Arial, sans-serif;
     }
     .container {
@@ -38,13 +40,40 @@
       color: white;
       position: absolute;
     }
+
+    /* Hidden background music player */
+    .music-player {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0.01;
+      pointer-events: none;
+    }
+    .music-player iframe {
+      width: 300px;
+      height: 150px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Will you go out a date with me?</h1>
+    <h1>愿意跟我在一起吗？</h1>
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
+  </div>
+
+  <!-- Background music from YouTube -->
+  <div class="music-player">
+    <iframe
+      src="https://www.youtube.com/embed/i7IZrHzn8Xo&?autoplay=1&loop=1&playlist=i7IZrHzn8Xo&"
+      title="Background music"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
   </div>
 
   <script>
