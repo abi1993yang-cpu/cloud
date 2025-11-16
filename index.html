@@ -85,16 +85,22 @@
       window.location.href = "nextpage.html";
     });
 
-    // Move the No button away randomly
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-    });
+    // Move the No button on click (works on phone + PC)
+  noBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // prevent accidental click
+    moveNoButton();
+  });
+
+  function moveNoButton() {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+  }
   </script>
 </body>
 </html>
+
 
 
 
